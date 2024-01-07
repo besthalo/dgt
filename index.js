@@ -33,9 +33,10 @@ function findMaximumOfSumNumberNumberArray(input = [], k = 0) {
   let max = null;
   let fromString = "";
   for (let index = 0; index < input.length; index++) {
-    // const element = array[index];
+    if (index + k > input.length) {
+      break;
+    }
     let newSubArray = input.slice(index, index + k);
-
     let sum = newSubArray.reduce((a, b) => a + b, 0);
     if (max == null) {
       max = sum;
@@ -49,8 +50,28 @@ function findMaximumOfSumNumberNumberArray(input = [], k = 0) {
   return { max, fromString };
 }
 
+function findMaximumOfSumNumberNumberArray2(input = [], k = 0) {
+  let max = null;
+  let fromString = "";
+  for (let index = 0; index < input.length; index++) {
+    if (index + k > input.length) {
+      break;
+    }
+    let newSubArray = input.slice(index, index + k);
+    let sum = newSubArray.reduce((a, b) => a + b, 0);
+    if (max == null) {
+      max = sum;
+      fromString = JSON.stringify(newSubArray);
+    } else if (sum >= max) {
+      max = sum;
+      fromString = JSON.stringify(newSubArray);
+    }
+  }
 
-console.log("-----------A------------")
+  return { max, fromString };
+}
+
+console.log("-----------A------------");
 console.log(
   "result of [ -1, 4, 30, 2, -4 ] maximum is :",
   findMaximumNumberArray([-1, 4, 30, 2, -4])
@@ -61,8 +82,7 @@ console.log(
   findMaximumNumberArray([3, 4, 5, 6, 7])
 );
 
-
-console.log("-----------Bonus------------")
+console.log("-----------Bonus------------");
 console.log(
   "result of [ -1, 4, 30, 2, -4 ] findSecondMaximumNumberArray is :",
   findSecondMaximumNumberArray([-1, 4, 30, 2, -4])
@@ -78,8 +98,7 @@ console.log(
   findSecondMaximumNumberArray([3, 4, 5, 6, 7, 7])
 );
 
-
-console.log("-----------B------------")
+console.log("-----------B------------");
 
 console.log(
   "result findMaximumOfSumNumberNumberArray([1, 4, -1, 2, 3], 3) is:",
@@ -88,4 +107,15 @@ console.log(
 console.log(
   "result findMaximumOfSumNumberNumberArray([1, 4, -1, 2, 3], 2) is:",
   findMaximumOfSumNumberNumberArray([1, 4, -1, 2, 3], 2)
+);
+
+console.log("-----------B2------------");
+
+console.log(
+  "result findMaximumOfSumNumberNumberArray([1, 4, -1, 2, 3], 3) is:",
+  findMaximumOfSumNumberNumberArray2([1, 4, -1, 2, 3], 3)
+);
+console.log(
+  "result findMaximumOfSumNumberNumberArray([1, 4, -1, 2, 3], 2) is:",
+  findMaximumOfSumNumberNumberArray2([1, 4, -1, 2, 3], 2)
 );
