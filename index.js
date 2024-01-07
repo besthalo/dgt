@@ -36,12 +36,12 @@ function findMaximumOfSumNumberNumberArray(input = [], k = 0) {
     // const element = array[index];
     let newSubArray = input.slice(index, index + k);
 
-    let test = newSubArray.reduce((a, b) => a + b, 0);
+    let sum = newSubArray.reduce((a, b) => a + b, 0);
     if (max == null) {
-      max = test;
+      max = sum;
       fromString = JSON.stringify(newSubArray);
-    } else if (test > max) {
-      max = test;
+    } else if (sum > max) {
+      max = sum;
       fromString = JSON.stringify(newSubArray);
     }
   }
